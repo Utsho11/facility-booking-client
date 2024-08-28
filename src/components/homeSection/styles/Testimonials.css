@@ -1,0 +1,70 @@
+/* Container for the review section */
+.review-section-container {
+  /* Update the path accordingly */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 2rem 8rem;
+}
+
+/* Styling for the slide content */
+.slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 8rem 8rem;
+}
+
+/* Review image (user avatar) */
+.review-image {
+  border-radius: 50%;
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  object-fit: cover;
+}
+
+/* Text styling for the review section */
+.review-text {
+  text-align: center;
+  gap: 1rem;
+  padding: 0 8rem;
+}
+
+/* Review name styling */
+.review-name {
+  color: #fe7d1f;
+  font-weight: 600;
+}
+
+/* Review designation styling */
+.review-designation {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Review description text */
+.review-description {
+  color: #adadad;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .review-section-container {
+    margin: 1rem 0;
+  }
+
+  .slide-content {
+    padding: 1rem 2rem;
+  }
+
+  .review-text {
+    padding: 0 2rem;
+  }
+
+  .review-image {
+    width: 75px;
+    height: 75px;
+  }
+}

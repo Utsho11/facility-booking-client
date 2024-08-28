@@ -1,0 +1,124 @@
+/* Footer background and general styling */
+.footer-container {
+  background-size: cover;
+  background-position: center;
+  padding: 8rem;
+  background-attachment: fixed;
+}
+
+/* Grid layout */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Headings */
+.footer-heading {
+  font-weight: 600;
+  font-size: 1.125rem; /* text-lg */
+  color: black;
+}
+
+.footer-hr {
+  border: 2px solid #fe7d1f;
+  margin: 1rem 0;
+  width: 6rem;
+}
+
+/* Links styling */
+.footer-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem; /* text-sm */
+  color: #595959;
+}
+
+.footer-list-item {
+  margin: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+.footer-list-item:hover {
+  color: #fe7d1f;
+}
+
+/* Contact Info */
+.footer-contact {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  align-items: center;
+  gap: 1rem;
+  color: #595959;
+}
+
+.footer-contact p {
+  margin: 0;
+}
+
+/* Social icons */
+.footer-social-icons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: #595959;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+  background-color: #fe7d1f;
+}
+
+@media (max-width: 1024px) {
+  .footer-container {
+    padding: 4rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .footer-heading {
+    font-size: 1rem; /* Slightly smaller font size for headings */
+  }
+
+  .footer-list {
+    font-size: 0.875rem; /* Keep font-size smaller on tablet */
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    gap: 1rem;
+  }
+
+  .footer-heading {
+    font-size: 0.875rem; /* Smaller font size for mobile */
+  }
+
+  .footer-list-item {
+    margin: 0.4rem 0;
+  }
+
+  .footer-social-icons {
+    justify-content: center;
+  }
+}
