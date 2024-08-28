@@ -50,6 +50,14 @@ const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["facility"],
     }),
+    updateFacility: builder.mutation({
+      query: (args) => ({
+        url: `/facility/${args.id}`,
+        method: "PUT",
+        body: args.data,
+      }),
+      invalidatesTags: ["facility"],
+    }),
     deleteFacility: builder.mutation({
       query: (id: string) => ({
         url: `/facility/${id}`,
@@ -65,4 +73,5 @@ export const {
   useAddFacilityMutation,
   useDeleteFacilityMutation,
   useGetSingleFacilityQuery,
+  useUpdateFacilityMutation,
 } = adminApi;

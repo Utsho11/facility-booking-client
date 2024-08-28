@@ -1,21 +1,63 @@
 import { useParams } from "react-router-dom";
-import { useGetSingleFacilityQuery } from "../../redux/features/admin/admin.api";
+import {
+  useGetSingleFacilityQuery,
+  useUpdateFacilityMutation,
+} from "../../redux/features/admin/admin.api";
 import { Button, Col, Form, Input, Row } from "antd";
 import { FaVolleyballBall } from "react-icons/fa";
 import BMCForm from "../../components/form/BMCForm";
 import BMCInput from "../../components/form/BMCInput";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+
+const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
 const UpdateFacility = () => {
   const { id } = useParams();
 
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
+
   const { data: currentFacility, isLoading } = useGetSingleFacilityQuery(
     id as string
   );
-
+  const [updateFacility] = useUpdateFacilityMutation();
   // Submit handler
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    const toastId = toast.loading("Creating new facility...");
+    if (data.image) {
+      const formData = new FormData();
+      formData.append("image", data.image);
+
+      fetch(img_hosting_url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((imgresponse) => {
+          data.image = imgresponse.data.display_url;
+          data.pricePerHour = Number(data.pricePerHour);
+          const updatedFacility = {
+            id: id,
+            data,
+          };
+          updateFacility(updatedFacility);
+
+          toast.success("Updated Successfully!", {
+            id: toastId,
+            duration: 2000,
+          });
+        });
+    } else {
+      const updatedFacility = {
+        id: id,
+        data,
+      };
+      updateFacility(updatedFacility);
+      toast.success("Updated Successfully!", {
+        id: toastId,
+        duration: 2000,
+      });
+    }
   };
 
   if (isLoading) {
