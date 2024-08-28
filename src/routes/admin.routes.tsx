@@ -1,7 +1,9 @@
 import AddAdmin from "../pages/admin/AddAdmin";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AllBooking from "../pages/admin/AllBooking";
+import CreateFacility from "../pages/admin/CreateFacility";
 import ManageFacilities from "../pages/admin/ManageFacilities";
+import UpdateFacility from "../pages/admin/UpdateFacility";
 
 export const adminPaths = [
   {
@@ -19,5 +21,13 @@ export const adminPaths = [
   {
     path: "addAdmin",
     element: <AddAdmin />,
+  },
+  {
+    path: "addFacility",
+    element: <CreateFacility />,
+  },
+  {
+    path: "updateFacility/:id",
+    element: <UpdateFacility />,
   },
 ];

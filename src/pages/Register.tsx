@@ -44,9 +44,9 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "0 1rem" }}>
       <Row justify="center" align="middle" style={{ height: "100vh" }}>
-        <Col className="form_container" span={18} sm={8}>
+        <Col className="form_container">
           <div style={{ textAlign: "center" }}>
             <FaVolleyballBall size={24} color="#FE7D1F" />
           </div>
@@ -59,10 +59,22 @@ const Register = () => {
           </div>
           <br></br>
           <BMCForm onSubmit={onSubmit} defaultValues={defaultValues}>
-            <BMCInput type="text" name="name" label="Name:" />
-            <BMCInput type="email" name="email" label="Email:" />
-            <BMCInput type="number" name="phone" label="Phone:" />
-            <BMCInput type="text" name="address" label="Address:" />
+            <Row gutter={8}>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
+                <BMCInput type="text" name="name" label="Name:" />
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
+                <BMCInput type="email" name="email" label="Email:" />
+              </Col>
+            </Row>
+            <Row gutter={8}>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
+                <BMCInput type="number" name="phone" label="Phone:" />
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
+                <BMCInput type="text" name="address" label="Address:" />
+              </Col>
+            </Row>
             <BMCInput
               type={showPassword ? "text" : "password"}
               name="password"

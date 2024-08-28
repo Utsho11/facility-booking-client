@@ -1,9 +1,13 @@
 import { Button, Pagination, Space, Table, TableColumnsType } from "antd";
 import { TFacility } from "../../types/facility.types";
 import { useState } from "react";
-import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
+import {
+  useDeleteFacilityMutation,
+  useGetAllFacilitiesQuery,
+} from "../../redux/features/admin/admin.api";
 import { Link } from "react-router-dom";
 import { BiSolidPlusCircle } from "react-icons/bi";
+import { toast } from "sonner";
 
 export type TTableData = Pick<
   TFacility,
@@ -17,7 +21,12 @@ const ManageFacilities = () => {
     { name: "sort", value: "pricePerHour" },
   ]);
 
-  console.log(facilityData?.data);
+  const [deleteFacility] = useDeleteFacilityMutation();
+
+  const handleRemove = (id: string) => {
+    deleteFacility(id);
+    toast.success("Removed facility Successfully!");
+  };
 
   const metaData = facilityData?.meta;
 
@@ -59,13 +68,13 @@ const ManageFacilities = () => {
       render: (item) => {
         return (
           <Space>
-            <Link to={`/admin/facility/${item.key}`}>
+            <Link to={`/facility/${item.key}`}>
               <Button>Details</Button>
             </Link>
-            <Link to={`/admin/facility/update/${item.key}`}>
+            <Link to={`/admin/updateFacility/${item.key}`}>
               <Button>Update</Button>
             </Link>
-            <Button>Remove</Button>
+            <Button onClick={() => handleRemove(item.key)}>Remove</Button>
           </Space>
         );
       },
@@ -89,8 +98,10 @@ const ManageFacilities = () => {
         columns={columns}
         dataSource={tableData}
         pagination={false}
+        scroll={{ x: 800 }}
       />
       <Pagination
+        align="center"
         current={page}
         onChange={(value) => setPage(value)}
         pageSize={metaData?.limit}

@@ -11,6 +11,7 @@ import { userPaths } from "./user.routes";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Admin from "../pages/admin/Admin";
 import User from "../pages/user/User";
+import FacilityDetailsPage from "../pages/facility/FacilityDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/facility/:id",
+        element: <FacilityDetailsPage />,
       },
     ],
   },

@@ -6,7 +6,6 @@ const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllFacilities: builder.query({
       query: (args) => {
-        console.log(args);
         const params = new URLSearchParams();
 
         if (args) {
@@ -21,6 +20,7 @@ const adminApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["facility"],
       transformResponse: (response: TResponseRedux<TFacility[]>) => {
         console.log(response.data);
 
@@ -30,7 +30,39 @@ const adminApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleFacility: builder.query<TFacility, string>({
+      query: (id: string) => ({
+        url: `/facility/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response: TResponseRedux<TFacility>) => {
+        if (!response?.data) {
+          throw new Error("Facility data not found");
+        }
+        return response.data;
+      },
+    }),
+    addFacility: builder.mutation({
+      query: (data) => ({
+        url: "/facility",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["facility"],
+    }),
+    deleteFacility: builder.mutation({
+      query: (id: string) => ({
+        url: `/facility/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["facility"],
+    }),
   }),
 });
 
-export const { useGetAllFacilitiesQuery } = adminApi;
+export const {
+  useGetAllFacilitiesQuery,
+  useAddFacilityMutation,
+  useDeleteFacilityMutation,
+  useGetSingleFacilityQuery,
+} = adminApi;
