@@ -32,10 +32,11 @@ const Register = () => {
       address: data.address,
     };
     try {
-      await addUser(userDetails);
-
-      toast.success("Created Successfully!", { id: toastId, duration: 2000 });
-      navigate("/login");
+      const res = await addUser(userDetails).unwrap();
+      if (res?.success) {
+        toast.success("Created Successfully!", { id: toastId, duration: 2000 });
+        navigate("/login");
+      }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
       console.log(error);

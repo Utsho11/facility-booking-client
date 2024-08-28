@@ -40,8 +40,6 @@ const Navbar = () => {
     user = verifyToken(token) as TUser;
   }
 
-  console.log(user?.userEmail);
-
   const items: MenuProps["items"] = [
     ...(user?.role === "admin"
       ? [

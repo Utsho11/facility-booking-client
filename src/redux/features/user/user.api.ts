@@ -1,3 +1,4 @@
+// import { TQueryParam } from "../../../types/global";
 import { baseApi } from "../../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
@@ -9,7 +10,12 @@ const userApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    getMe: builder.query({
+      query: () => ({
+        url: "/user/me",
+        method: "GET",
+      }),
+    }),
   }),
 });
-
-export const { useAddUserMutation } = userApi;
+export const { useAddUserMutation, useGetMeQuery } = userApi;
