@@ -9,6 +9,8 @@ import { routeGenerator } from "../utils/routeGenerator";
 import { adminPaths } from "./admin.routes";
 import { userPaths } from "./user.routes";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import Admin from "../pages/admin/Admin";
+import User from "../pages/user/User";
 
 const router = createBrowserRouter([
   {
@@ -27,13 +29,21 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
     ],
   },
   {
     path: "/admin",
     element: (
       <ProtectedRoute role="admin">
-        <App />
+        <Admin />
       </ProtectedRoute>
     ),
     children: routeGenerator(adminPaths),
@@ -42,18 +52,10 @@ const router = createBrowserRouter([
     path: "/user",
     element: (
       <ProtectedRoute role="user">
-        <App />
+        <User />
       </ProtectedRoute>
     ),
     children: routeGenerator(userPaths),
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 
