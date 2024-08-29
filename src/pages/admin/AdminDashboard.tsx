@@ -1,5 +1,5 @@
 import { FaHome, FaPhoneAlt } from "react-icons/fa";
-import "./styles.css/Dashboard.css";
+import "./styles/Dashboard.css";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import avatar from "../../assets/images/avatar-male-man-svgrepo-com.png";
@@ -38,7 +38,11 @@ const AdminDashboard = () => {
         </div>
         <div className="headings">
           <p className="name">Hello, Mr.{data?.data?.name}</p>
-          <p className="role">{data?.data?.role}</p>
+          <p className="role">
+            {"("}
+            {data?.data?.role}
+            {")"}
+          </p>
         </div>
         <div className="info">
           <ul className="contact-info">
