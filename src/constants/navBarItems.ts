@@ -11,6 +11,10 @@ const navbarItems = [
     title: "Contact us",
     path: "/contact",
   },
+  {
+    title: "Book Facility",
+    path: "/createBooking",
+  },
 ];
 
 export default navbarItems;

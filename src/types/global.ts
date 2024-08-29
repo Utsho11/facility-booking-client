@@ -30,3 +30,8 @@ export type TResponse<T> = {
 };
 
 export type TResponseRedux<T> = TResponse<T> & BaseQueryApi;
+
+export type TDate = {
+  startTime: string;
+  endTime: string;
+};
