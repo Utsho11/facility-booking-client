@@ -5,25 +5,25 @@ import { baseApi } from "../../api/baseApi";
 const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllFacilities: builder.query({
-      query: (args) => {
+      query: (args = []) => {
         const params = new URLSearchParams();
 
-        if (args) {
+        if (args && args.length > 0) {
           args.forEach((item: TQueryParam) => {
             params.append(item.name, item.value as string);
           });
         }
 
         return {
-          url: "/facility",
+          url:
+            args && args.length > 0
+              ? `/facility?${params.toString()}`
+              : "/facility",
           method: "GET",
-          params: params,
         };
       },
       providesTags: ["facility"],
       transformResponse: (response: TResponseRedux<TFacility[]>) => {
-        console.log(response.data);
-
         return {
           data: response.data,
           meta: response.meta,

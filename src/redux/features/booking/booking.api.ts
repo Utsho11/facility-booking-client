@@ -25,7 +25,15 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
     }),
+    createBooking: builder.mutation({
+      query: (data) => ({
+        url: "/bookings",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useCheckAvailabilityQuery } = bookingApi;
+export const { useCheckAvailabilityQuery, useCreateBookingMutation } =
+  bookingApi;
