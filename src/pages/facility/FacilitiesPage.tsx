@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Row, Col, Card, Input, Select, Pagination } from "antd"; // Your RTK Query hook
+import { Row, Col, Card, Input, Select, Pagination, Button } from "antd"; // Your RTK Query hook
 import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
+import { Link } from "react-router-dom";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -49,7 +50,7 @@ const FacilitiesPage: React.FC = () => {
   }
 
   return (
-    <div style={{ margin: "3rem 2rem", height: "100vh" }}>
+    <div style={{ margin: "3rem 2rem", padding: "1rem 0" }}>
       {/* Search Bar */}
       <Row gutter={8} justify="center" align="middle">
         <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
@@ -83,7 +84,7 @@ const FacilitiesPage: React.FC = () => {
               title={facility.name}
               bordered={false}
               hoverable
-              style={{ width: "100%" }}
+              style={{ width: "100%", height: "100%" }}
             >
               <img className="facility-card-img" src={facility?.image} />
               <p>
@@ -92,14 +93,30 @@ const FacilitiesPage: React.FC = () => {
               <p>
                 <strong>Hourly Rate:</strong> ${facility.pricePerHour}
               </p>
+              <hr style={{ margin: "1rem" }} />
+              <div>
+                <Row gutter={8}>
+                  <Col>
+                    <Link to={`/facility/${facility._id}`}>
+                      <Button>Details</Button>
+                    </Link>
+                  </Col>
+                  <Col>
+                    <Link to="/createBooking">
+                      <Button>Book Now</Button>
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
             </Card>
           </Col>
         ))}
       </Row>
 
       {/* Pagination (if required) */}
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <div>
         <Pagination
+          style={{ marginTop: "2rem" }}
           align="center"
           current={page}
           pageSize={metaData?.limit}
