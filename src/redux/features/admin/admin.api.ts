@@ -1,4 +1,4 @@
-import { TFacility } from "../../../types/facility.types";
+import { TBooking, TFacility } from "../../../types/facility.types";
 import { TQueryParam, TResponseRedux } from "../../../types/global";
 import { baseApi } from "../../api/baseApi";
 
@@ -28,6 +28,16 @@ const adminApi = baseApi.injectEndpoints({
           data: response.data,
           meta: response.meta,
         };
+      },
+    }),
+    getAllBookingForAdmin: builder.query<TBooking[], void>({
+      query: () => ({
+        url: "bookings",
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+      transformResponse: (response: TResponseRedux<TBooking[]>) => {
+        return response?.data ?? [];
       },
     }),
     getSingleFacility: builder.query<TFacility, string>({
@@ -74,4 +84,5 @@ export const {
   useDeleteFacilityMutation,
   useGetSingleFacilityQuery,
   useUpdateFacilityMutation,
+  useGetAllBookingForAdminQuery,
 } = adminApi;

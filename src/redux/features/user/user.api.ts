@@ -1,4 +1,6 @@
 // import { TQueryParam } from "../../../types/global";
+import { TBooking } from "../../../types/facility.types";
+import { TResponseRedux } from "../../../types/global";
 import { baseApi } from "../../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
@@ -10,6 +12,23 @@ const userApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    getAllBookingForUser: builder.query<TBooking[], void>({
+      query: () => ({
+        url: "bookings/user",
+        method: "GET",
+      }),
+      providesTags: ["booking"],
+      transformResponse: (response: TResponseRedux<TBooking[]>) => {
+        return response?.data ?? [];
+      },
+    }),
+    cancelBooking: builder.mutation({
+      query: (id: string) => ({
+        url: `/bookings/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["booking"],
+    }),
     getMe: builder.query({
       query: () => ({
         url: "/user/me",
@@ -18,4 +37,9 @@ const userApi = baseApi.injectEndpoints({
     }),
   }),
 });
-export const { useAddUserMutation, useGetMeQuery } = userApi;
+export const {
+  useAddUserMutation,
+  useGetMeQuery,
+  useGetAllBookingForUserQuery,
+  useCancelBookingMutation,
+} = userApi;
