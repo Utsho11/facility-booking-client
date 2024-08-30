@@ -15,7 +15,7 @@ import {
   useCurrentToken,
 } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
-import { Button, Dropdown, MenuProps } from "antd";
+import { Button } from "antd";
 import { toast } from "sonner";
 
 const Navbar = () => {
@@ -40,40 +40,6 @@ const Navbar = () => {
     user = verifyToken(token) as TUser;
   }
 
-  const items: MenuProps["items"] = [
-    ...(user?.role === "admin"
-      ? [
-          {
-            key: "1",
-            label: <Link to="/admin/dashboard">View Dashboard</Link>,
-          },
-          {
-            key: "2",
-            label: (
-              <Link to="/admin/manageFacilities">Facility Management</Link>
-            ),
-          },
-          {
-            key: "3",
-            label: <Link to="/admin/allBookings">View Bookings</Link>,
-          },
-          {
-            key: "4",
-            label: <Link to="/admin/addAdmin">Add Admin</Link>,
-          },
-        ]
-      : [
-          {
-            key: "1",
-            label: <Link to="/user/dashboard">View Dashboard</Link>,
-          },
-          {
-            key: "2",
-            label: <Link to="/user/myBookings">My Bookings</Link>,
-          },
-        ]),
-  ];
-
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -90,12 +56,20 @@ const Navbar = () => {
             </li>
           ))}
           <li className="nav-item">
-            {user ? (
-              <Dropdown menu={{ items }} placement="bottom" arrow>
+            {user?.role === "user" ? (
+              <Link to="user/dashboard">
                 <FaRegUserCircle size={24} className="nav-link" />
-              </Dropdown>
+              </Link>
             ) : (
-              ""
+              <>
+                {user?.role === "admin" ? (
+                  <Link to="admin/dashboard">
+                    <FaRegUserCircle size={24} className="nav-link" />
+                  </Link>
+                ) : (
+                  ""
+                )}
+              </>
             )}
           </li>
           <li className="nav-item">

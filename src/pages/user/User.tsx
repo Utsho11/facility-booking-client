@@ -1,13 +1,13 @@
 import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
-import Navbar from "../../components/layout/NavBar";
+import SideBar from "../../components/layout/SideBar";
 
 const { Content } = Layout;
 
 const User = () => {
   return (
     <Layout>
-      <Navbar />
+      <SideBar />
       <Content>
         <Outlet />
       </Content>

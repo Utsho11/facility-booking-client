@@ -3,6 +3,7 @@ import { TUser, useCurrentToken } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { verifyToken } from "../../utils/verifyToken";
 import { Link } from "react-router-dom";
+import { FaVolleyballBall } from "react-icons/fa";
 
 const { Sider } = Layout;
 
@@ -35,11 +36,19 @@ const SideBar = () => {
         },
         {
           key: "3",
-          label: <Link to="/admin/allBookings">View Bookings</Link>,
+          label: <Link to="/admin/addFacility">Add Facility</Link>,
         },
         {
           key: "4",
           label: <Link to="/admin/addAdmin">Add Admin</Link>,
+        },
+        {
+          key: "5",
+          label: <Link to="/admin/allBookings">View Bookings</Link>,
+        },
+        {
+          key: "6",
+          label: <Link to="/">Go to Home</Link>,
         },
       ];
       break;
@@ -53,6 +62,10 @@ const SideBar = () => {
           key: "2",
           label: <Link to="/user/myBookings">My Bookings</Link>,
         },
+        {
+          key: "3",
+          label: <Link to="/">Go to Home</Link>,
+        },
       ];
       break;
 
@@ -62,9 +75,17 @@ const SideBar = () => {
 
   return (
     <Sider
-      breakpoint="lg"
+      width="20rem"
+      breakpoint="md"
       collapsedWidth="0"
-      style={{ height: "100vh", position: "sticky", top: "0", left: "0" }}
+      style={{
+        height: "100vh",
+        position: "sticky",
+        top: "0",
+        left: "0",
+        backgroundColor: "#545454",
+        width: "100%",
+      }}
     >
       <div
         style={{
@@ -75,12 +96,17 @@ const SideBar = () => {
           alignItems: "center",
         }}
       >
-        <h1>PH Uni</h1>
+        <div className="navbar-logo">
+          <FaVolleyballBall size={24} color="#FE7D1F" />
+          Book My <span style={{ color: "#FE7D1F" }}>Court</span>{" "}
+        </div>
       </div>
       <Menu
+        style={{
+          backgroundColor: "#545454",
+        }}
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["4"]}
         items={sidebarItems}
       />
     </Sider>

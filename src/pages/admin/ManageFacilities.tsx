@@ -6,7 +6,6 @@ import {
   useGetAllFacilitiesQuery,
 } from "../../redux/features/admin/admin.api";
 import { Link } from "react-router-dom";
-import { BiSolidPlusCircle } from "react-icons/bi";
 import { toast } from "sonner";
 
 export type TTableData = Pick<
@@ -84,15 +83,6 @@ const ManageFacilities = () => {
 
   return (
     <div className="">
-      <div className="" style={{ textAlign: "center", margin: "3rem 0" }}>
-        To Add more Facility. Please Click Here..
-        <Link to="/admin/addFacility">
-          <Button style={{ backgroundColor: "#115dfc", color: "#fff" }}>
-            <BiSolidPlusCircle />
-            Add Facility
-          </Button>
-        </Link>
-      </div>
       <Table
         loading={isFetching}
         columns={columns}

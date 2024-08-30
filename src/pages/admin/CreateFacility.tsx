@@ -31,9 +31,9 @@ const CreateFacility = () => {
   };
 
   return (
-    <div style={{ padding: "0 1rem" }}>
+    <div>
       <Row justify="center" align="middle" style={{ height: "100vh" }}>
-        <Col className="form_container" span={18} sm={6}>
+        <Col className="form_container" span={18} sm={6} lg={{ span: 8 }}>
           <div style={{ textAlign: "center" }}>
             <FaVolleyballBall size={24} color="#FE7D1F" />
           </div>

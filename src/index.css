@@ -53,3 +53,9 @@
     gap: 1rem;
   }
 }
+
+:where(.css-dev-only-do-not-override-1gwfwyx).ant-layout
+  .ant-layout-sider-zero-width-trigger {
+  top: 0;
+  background-color: #545454;
+}
