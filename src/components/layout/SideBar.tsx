@@ -75,16 +75,16 @@ const SideBar = () => {
 
   return (
     <Sider
-      width="20rem"
+      width="15rem"
       breakpoint="md"
       collapsedWidth="0"
       style={{
         height: "100vh",
-        position: "sticky",
+        position: "fixed", // Change to fixed
         top: "0",
         left: "0",
         backgroundColor: "#545454",
-        width: "100%",
+        zIndex: 1000, // Ensure it appears over the content
       }}
     >
       <div

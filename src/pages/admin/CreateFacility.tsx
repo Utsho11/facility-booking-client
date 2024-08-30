@@ -5,6 +5,7 @@ import BMCInput from "../../components/form/BMCInput";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import { useAddFacilityMutation } from "../../redux/features/admin/admin.api";
 import { toast } from "sonner";
+import imgDefault from "../../assets/images/istockphoto-1409329028-612x612.jpg";
 
 const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
@@ -14,20 +15,34 @@ const CreateFacility = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const toastId = toast.loading("Creating new facility...");
-    const formData = new FormData();
-    formData.append("image", data.image);
 
-    fetch(img_hosting_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imgresponse) => {
-        data.image = imgresponse.data.display_url;
-        data.pricePerHour = Number(data.pricePerHour);
-        addFacility(data);
-        toast.success("Created Successfully!", { id: toastId, duration: 2000 });
+    if (data.image) {
+      const formData = new FormData();
+      formData.append("image", data.image);
+
+      fetch(img_hosting_url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((imgresponse) => {
+          data.image = imgresponse.data.display_url;
+          data.pricePerHour = Number(data.pricePerHour);
+          addFacility(data);
+          toast.success("Created Successfully!", {
+            id: toastId,
+            duration: 2000,
+          });
+        });
+    } else {
+      data.image = imgDefault;
+      data.pricePerHour = Number(data.pricePerHour);
+      addFacility(data);
+      toast.success("Created Successfully!", {
+        id: toastId,
+        duration: 2000,
       });
+    }
   };
 
   return (

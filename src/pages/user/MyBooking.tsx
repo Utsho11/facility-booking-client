@@ -4,6 +4,7 @@ import {
   useGetAllBookingForUserQuery,
 } from "../../redux/features/user/user.api";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 export type TTableData = {
   key: string;
@@ -62,6 +63,9 @@ const MyBooking = () => {
         return (
           <Space>
             <Button onClick={() => handleCancel(item.key)}>Cancel</Button>
+            <Link to={`/user/bookings/${item.key}`}>
+              <Button>Details</Button>
+            </Link>
           </Space>
         );
       },

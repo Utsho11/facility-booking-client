@@ -13,6 +13,7 @@ import Admin from "../pages/admin/Admin";
 import User from "../pages/user/User";
 import FacilityDetailsPage from "../pages/facility/FacilityDetailsPage";
 import CreateBooking from "../pages/CreateBooking";
+import FacilitiesPage from "../pages/facility/FacilitiesPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/facilities",
+        element: <FacilitiesPage />,
       },
       {
         path: "/facility/:id",

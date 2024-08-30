@@ -23,7 +23,7 @@ const UpdateFacility = () => {
   const [updateFacility] = useUpdateFacilityMutation();
   // Submit handler
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const toastId = toast.loading("Creating new facility...");
+    const toastId = toast.loading("Updating facility...");
     if (data.image) {
       const formData = new FormData();
       formData.append("image", data.image);
@@ -72,7 +72,7 @@ const UpdateFacility = () => {
             <FaVolleyballBall size={24} color="#FE7D1F" />
           </div>
           <div className="title_container">
-            <p className="title">Create New Faculty</p>
+            <p className="title">Update Facility</p>
           </div>
           <br></br>
           <BMCForm onSubmit={onSubmit} defaultValues={currentFacility}>
@@ -102,7 +102,7 @@ const UpdateFacility = () => {
               }}
               htmlType="submit"
             >
-              Create Facility
+              Update Facility
             </Button>
           </BMCForm>
         </Col>

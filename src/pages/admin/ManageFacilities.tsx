@@ -18,6 +18,7 @@ const ManageFacilities = () => {
   const { data: facilityData, isFetching } = useGetAllFacilitiesQuery([
     { name: "page", value: page },
     { name: "sort", value: "pricePerHour" },
+    { name: "limit", value: "5" },
   ]);
 
   const [deleteFacility] = useDeleteFacilityMutation();

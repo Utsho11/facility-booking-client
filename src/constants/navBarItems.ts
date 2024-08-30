@@ -4,6 +4,10 @@ const navbarItems = [
     path: "/",
   },
   {
+    title: "Facilities",
+    path: "/facilities",
+  },
+  {
     title: "About us",
     path: "/about",
   },
