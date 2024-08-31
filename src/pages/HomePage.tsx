@@ -11,7 +11,13 @@ const HomePage = () => {
       <Slider />
       <FacilitySection />
       <HowItWorks />
+      <div style={{ textAlign: "center", margin: "3rem 0" }}>
+        <h1>News Corner</h1>
+      </div>
       <Spotlight />
+      <div style={{ textAlign: "center", margin: "3rem 0" }}>
+        <h1>Testimonial</h1>
+      </div>
       <Testimonials />
       <Footer />
     </div>

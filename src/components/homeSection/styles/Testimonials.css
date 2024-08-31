@@ -52,7 +52,7 @@
 /* Responsive design for mobile */
 @media (max-width: 768px) {
   .review-section-container {
-    margin: 1rem 0;
+    margin: 2rem;
   }
 
   .slide-content {

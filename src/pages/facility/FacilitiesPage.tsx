@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Card, Input, Select, Pagination, Button } from "antd"; // Your RTK Query hook
 import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
 import { Link } from "react-router-dom";
+import { FaLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -87,13 +88,15 @@ const FacilitiesPage: React.FC = () => {
               style={{ width: "100%", height: "100%" }}
             >
               <img className="facility-card-img" src={facility?.image} />
-              <p>
-                <strong>Location:</strong> {facility.location}
+              <p style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <FaLocationDot />
+                <strong>{facility.location}</strong>
               </p>
-              <p>
-                <strong>Hourly Rate:</strong> ${facility.pricePerHour}
+              <p style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <FaMoneyCheckDollar />
+                <strong>{facility.pricePerHour}$</strong>
               </p>
-              <hr style={{ margin: "1rem" }} />
+              <hr style={{ margin: "1rem 0" }} />
               <div>
                 <Row gutter={8}>
                   <Col>
