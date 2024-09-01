@@ -1,0 +1,35 @@
+.facility-card {
+  width: 100%;
+  margin: auto;
+  height: 100vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facility-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.facility-details {
+  padding: 1rem;
+}
+
+.facility-details p {
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .facility-image {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .facility-details {
+    padding: 4rem;
+  }
+  .facility-card {
+    padding-top: 8rem;
+  }
+}

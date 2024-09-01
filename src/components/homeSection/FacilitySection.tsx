@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
 import { FaLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
 import "./styles/facilitySection.css";
+import { IoInformationCircleSharp } from "react-icons/io5";
 
 const FacilitySection = () => {
   const { data } = useGetAllFacilitiesQuery([
@@ -13,7 +14,7 @@ const FacilitySection = () => {
   return (
     <div className="facility-section">
       <div style={{ textAlign: "center", margin: "1rem 0" }}>
-        <h1>Facility Corner</h1>
+        <h1>Facilities</h1>
       </div>
       <Row gutter={[16, 16]}>
         {data?.data?.map((facility, index) => (
@@ -38,12 +39,19 @@ const FacilitySection = () => {
                 <Row gutter={8}>
                   <Col>
                     <Link to={`/facility/${facility._id}`}>
-                      <Button>Details</Button>
+                      <Button>
+                        <IoInformationCircleSharp />
+                        Details
+                      </Button>
                     </Link>
                   </Col>
                   <Col>
                     <Link to="/createBooking">
-                      <Button>Book Now</Button>
+                      <Button
+                        style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+                      >
+                        Book Now
+                      </Button>
                     </Link>
                   </Col>
                 </Row>

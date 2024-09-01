@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns */
   gap: 2rem;
-  margin: 8rem 8rem;
+  margin: 0 8rem 8rem;
 }
 
 .wrapper {
@@ -63,7 +63,7 @@
   .spotlight-container {
     grid-template-columns: 1fr;
     gap: 1rem; /* Reduced gap */
-    margin: 2rem 2rem;
+    margin: 8rem 2rem;
   }
 
   /* Spotlight child responsive adjustments */

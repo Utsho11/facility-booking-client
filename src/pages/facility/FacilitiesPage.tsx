@@ -3,6 +3,7 @@ import { Row, Col, Card, Input, Select, Pagination, Button } from "antd"; // You
 import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
 import { Link } from "react-router-dom";
 import { FaLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
+import { IoInformationCircleSharp } from "react-icons/io5";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -53,29 +54,36 @@ const FacilitiesPage: React.FC = () => {
   return (
     <div style={{ margin: "3rem 2rem", padding: "1rem 0" }}>
       {/* Search Bar */}
-      <Row gutter={8} justify="center" align="middle">
-        <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
-          <Search
-            placeholder="Search facilities"
-            enterButton="Search"
-            onSearch={handleSearch}
-            style={{ marginBottom: "20px", width: "300px" }}
-          />
-        </Col>
-        {/* Filter Dropdown */}
-        <Col>
-          <Select
-            placeholder="Filter by price"
-            allowClear
-            defaultValue="asc"
-            style={{ marginBottom: "20px", width: "300px" }}
-            onChange={handleFilterChange}
-          >
-            <Option value="asc"> Low to High</Option>
-            <Option value="desc">High to Low</Option>
-          </Select>
-        </Col>
-      </Row>
+      <div style={{ margin: "auto" }}>
+        <Row
+          gutter={[8, 8]}
+          justify="center"
+          align="middle"
+          style={{ margin: "2rem 0" }}
+        >
+          <Col span={24} md={{ span: 12 }} lg={{ span: 6 }}>
+            <Search
+              placeholder="Search facilities"
+              enterButton="Search"
+              onSearch={handleSearch}
+              style={{ width: "350px" }}
+            />
+          </Col>
+          {/* Filter Dropdown */}
+          <Col span={24} md={{ span: 12 }} lg={{ span: 6 }}>
+            <Select
+              placeholder="Filter by price"
+              allowClear
+              defaultValue="asc"
+              style={{ width: "350px" }}
+              onChange={handleFilterChange}
+            >
+              <Option value="asc"> Low to High</Option>
+              <Option value="desc">High to Low</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
 
       {/* Facilities Cards */}
       <Row gutter={[16, 16]}>
@@ -101,12 +109,19 @@ const FacilitiesPage: React.FC = () => {
                 <Row gutter={8}>
                   <Col>
                     <Link to={`/facility/${facility._id}`}>
-                      <Button>Details</Button>
+                      <Button>
+                        <IoInformationCircleSharp />
+                        Details
+                      </Button>
                     </Link>
                   </Col>
                   <Col>
                     <Link to="/createBooking">
-                      <Button>Book Now</Button>
+                      <Button
+                        style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+                      >
+                        Book Now
+                      </Button>
                     </Link>
                   </Col>
                 </Row>

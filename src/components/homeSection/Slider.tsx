@@ -25,7 +25,12 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button className="slider-btn">Book Now</Button>
+          <Button
+            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+            size="large"
+          >
+            Book Now
+          </Button>
         </div>
       </div>
     </div>
@@ -47,7 +52,12 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button className="slider-btn">Book Now</Button>
+          <Button
+            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+            size="large"
+          >
+            Book Now
+          </Button>
         </div>
       </div>
     </div>
@@ -69,7 +79,12 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button className="slider-btn">Book Now</Button>
+          <Button
+            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+            size="large"
+          >
+            Book Now
+          </Button>
         </div>
       </div>
     </div>
@@ -92,7 +107,12 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button className="slider-btn">Book Now</Button>
+          <Button
+            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+            size="large"
+          >
+            Book Now
+          </Button>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 /* Slider Styles */
 .slider-container {
   position: relative;
-  height: 750px;
+  height: 52rem;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -26,19 +26,6 @@
   z-index: 2;
   font-size: 42px;
   font-weight: 700;
-}
-
-.slider-btn {
-  background-color: #fe7d1f;
-  color: white;
-  padding: 20px 20px;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.slider-btn:hover {
-  background-color: #000000;
-  color: white;
 }
 
 /* Media Queries for Responsiveness */
