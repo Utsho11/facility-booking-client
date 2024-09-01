@@ -12,7 +12,7 @@ const HomePage = () => {
       <FacilitySection />
       <HowItWorks />
       <div style={{ textAlign: "center", margin: "3rem 0" }}>
-        <h1>News Corner</h1>
+        <h1>In The Spotlight</h1>
       </div>
       <Spotlight />
       <div style={{ textAlign: "center", margin: "3rem 0" }}>

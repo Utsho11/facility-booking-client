@@ -3,6 +3,7 @@ import Typewriter from "typewriter-effect";
 import slider1 from "../../assets/images/h1-slider01.jpg";
 import slider2 from "../../assets/images/h1-slider02.jpg";
 import "./styles/slider.css";
+import { Link } from "react-router-dom";
 
 const Slider = () => (
   <Carousel autoplay>
@@ -25,12 +26,14 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button
-            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-            size="large"
-          >
-            Book Now
-          </Button>
+          <Link to="/createBooking">
+            <Button
+              style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+              size="large"
+            >
+              Book Now
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -52,12 +55,14 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button
-            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-            size="large"
-          >
-            Book Now
-          </Button>
+          <Link to="/createBooking">
+            <Button
+              style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+              size="large"
+            >
+              Book Now
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -79,12 +84,14 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button
-            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-            size="large"
-          >
-            Book Now
-          </Button>
+          <Link to="/createBooking">
+            <Button
+              style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+              size="large"
+            >
+              Book Now
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
@@ -107,12 +114,14 @@ const Slider = () => (
               loop: true,
             }}
           />
-          <Button
-            style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-            size="large"
-          >
-            Book Now
-          </Button>
+          <Link to="/createBooking">
+            <Button
+              style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+              size="large"
+            >
+              Book Now
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

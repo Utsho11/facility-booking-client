@@ -12,11 +12,25 @@ import { useState } from "react";
 import { TQueryParam } from "../types/global";
 import BMCTimePicker from "../components/form/BMCTimePicker";
 import { toast } from "sonner";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { verifyToken } from "../utils/verifyToken";
+import { TUser } from "../types/facility.types";
+import { useNavigate } from "react-router-dom";
+import { logout, useCurrentToken } from "../redux/features/auth/authSlice";
 
 const CreateBooking = () => {
   const { data: facilities, isLoading } = useGetAllFacilitiesQuery([]);
 
-  // State to store params for availability check
+  const token = useAppSelector(useCurrentToken);
+
+  let user: TUser;
+
+  if (token) {
+    user = verifyToken(token) as TUser;
+  } // State to store params for availability check
+
+  const navigate = useNavigate();
+
   const [params, setParams] = useState<TQueryParam[] | null>(null);
 
   // Trigger check availability query based on params
@@ -49,7 +63,14 @@ const CreateBooking = () => {
     setParams(queryParams);
   };
 
+  const dispatch = useAppDispatch();
   const handleBooking: SubmitHandler<FieldValues> = async (data) => {
+    if (user?.role !== "user") {
+      dispatch(logout());
+      toast.warning("Only user is allowed to book facilities.");
+      return navigate("/login");
+    }
+
     const toastId = toast.loading("Booking a Facility...");
     data.date = data.date.format("YYYY-MM-DD");
     data.startTime = data.startTime.format("HH:MM");
@@ -95,7 +116,9 @@ const CreateBooking = () => {
                   <BMCDatePicker label="Select a date:" name="date" />
                 </Col>
               </Row>
-              <Button htmlType="submit">Check Availability</Button>
+              <Button type="primary" htmlType="submit">
+                Check Availability
+              </Button>
             </BMCForm>
           </Col>
         </Row>
@@ -180,7 +203,12 @@ const CreateBooking = () => {
                   <BMCTimePicker label="Select a End time:" name="endTime" />
                 </Col>
               </Row>
-              <Button htmlType="submit">Book Now</Button>
+              <Button
+                style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+                htmlType="submit"
+              >
+                Book Now
+              </Button>
             </BMCForm>
           </Col>
         </Row>

@@ -4,7 +4,6 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import HomePage from "../pages/HomePage";
 import Contact from "../pages/Contact";
-import About from "../pages/About";
 import { routeGenerator } from "../utils/routeGenerator";
 import { adminPaths } from "./admin.routes";
 import { userPaths } from "./user.routes";
@@ -14,6 +13,7 @@ import User from "../pages/user/User";
 import FacilityDetailsPage from "../pages/facility/FacilityDetailsPage";
 import CreateBooking from "../pages/CreateBooking";
 import FacilitiesPage from "../pages/facility/FacilitiesPage";
+import About from "../pages/about/About";
 
 const router = createBrowserRouter([
   {

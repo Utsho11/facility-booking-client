@@ -69,15 +69,10 @@
   width: 2rem;
   height: 2rem;
   border-radius: 9999px;
-  background-color: #595959;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s;
-}
-
-.social-icon:hover {
-  background-color: #fe7d1f;
 }
 
 @media (max-width: 1024px) {

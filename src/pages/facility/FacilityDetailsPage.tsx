@@ -1,7 +1,7 @@
 import { Card, Button, Col, Row } from "antd";
 import "./styles/FacilityCard.css";
 import { useGetSingleFacilityQuery } from "../../redux/features/admin/admin.api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 
 const FacilityDetailsPage = () => {
@@ -42,15 +42,19 @@ const FacilityDetailsPage = () => {
             </p>
             <Row gutter={[8, 8]}>
               <Col>
-                <Button
-                  style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-                  size="large"
-                >
-                  Book Now
-                </Button>
+                <Link to="/createBooking">
+                  <Button
+                    style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
+                    size="large"
+                  >
+                    Book Now
+                  </Button>
+                </Link>
               </Col>
               <Col>
-                <Button size="large">Go to Facilities</Button>
+                <Link to="/facilities">
+                  <Button size="large">Back to Facilities</Button>
+                </Link>
               </Col>
             </Row>
           </div>

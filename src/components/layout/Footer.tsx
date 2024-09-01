@@ -52,15 +52,21 @@ const Footer = () => {
           <hr className="footer-hr" />
           <ul className="footer-list">
             <li className="footer-contact">
-              <LocationIcon />
+              <div className="social-icon">
+                <LocationIcon />
+              </div>
               <p>33 New Montgomery St. Ste 750 San Francisco, CA, USA 94105</p>
             </li>
             <li className="footer-contact">
-              <MailIcon />
+              <div className="social-icon">
+                <MailIcon />
+              </div>
               <p>evergreenNursery@exampledemo.com</p>
             </li>
             <li className="footer-contact">
-              <PhoneIcon />
+              <div className="social-icon">
+                <PhoneIcon />
+              </div>
               <p>+8801 3889098</p>
             </li>
           </ul>

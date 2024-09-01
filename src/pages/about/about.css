@@ -1,0 +1,60 @@
+.about-us {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mission-statement,
+.team-section,
+.history-section,
+.contact-section {
+  margin-bottom: 2rem;
+}
+
+.mission-statement h2,
+.team-section h2,
+.history-section h2,
+.contact-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.team-photo {
+  height: 200px;
+  object-fit: contain;
+  border-radius: 8px 8px 0 0;
+}
+
+.team-card {
+  text-align: left;
+}
+
+.team-bio {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.history-section {
+  text-align: center;
+}
+
+.timeline-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 800px; /* Optional: Limit the max width of the timeline for readability */
+}
+
+.timeline-container .ant-timeline {
+  text-align: left; /* Ensure timeline items are left-aligned even when centered */
+}
+
+.contact-section p {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .about-us {
+    margin: 4rem 8rem;
+  }
+}
