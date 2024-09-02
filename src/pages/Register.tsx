@@ -8,15 +8,6 @@ import { toast } from "sonner";
 import { FaVolleyballBall } from "react-icons/fa";
 import { useState } from "react";
 
-const defaultValues = {
-  name: "Programming Hero",
-  email: "user12@programming-hero.com",
-  password: "programming-hero",
-  phone: "01322901105",
-  role: "user",
-  address: "Level-4, 34, Awal Centre, Banani, Dhaka",
-};
-
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +49,7 @@ const Register = () => {
             </span>
           </div>
           <br></br>
-          <BMCForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <BMCForm onSubmit={onSubmit}>
             <Row gutter={8}>
               <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
                 <BMCInput type="text" name="name" label="Name:" />

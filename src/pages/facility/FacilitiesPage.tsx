@@ -4,6 +4,9 @@ import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
 import { Link } from "react-router-dom";
 import { FaLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import Lottie from "lottie-react";
+
+import sportLoader from "../../assets/images/sport-loader.json";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -48,7 +51,13 @@ const FacilitiesPage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return (
+      <Lottie
+        animationData={sportLoader}
+        loop={true}
+        style={{ maxWidth: "100%", height: "100vh" }}
+      />
+    );
   }
 
   return (

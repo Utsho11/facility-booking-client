@@ -8,7 +8,7 @@ const User = () => {
   return (
     <Layout>
       <SideBar />
-      <Content>
+      <Content className="dashboard-container">
         <Outlet />
       </Content>
     </Layout>

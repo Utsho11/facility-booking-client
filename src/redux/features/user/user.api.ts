@@ -22,6 +22,18 @@ const userApi = baseApi.injectEndpoints({
         return response?.data ?? [];
       },
     }),
+    getSingleBooking: builder.query<TBooking, string>({
+      query: (id: string) => ({
+        url: `/bookings/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response: TResponseRedux<TBooking>) => {
+        if (!response?.data) {
+          throw new Error("Booking data not found");
+        }
+        return response.data;
+      },
+    }),
     cancelBooking: builder.mutation({
       query: (id: string) => ({
         url: `/bookings/${id}`,
@@ -42,4 +54,5 @@ export const {
   useGetMeQuery,
   useGetAllBookingForUserQuery,
   useCancelBookingMutation,
+  useGetSingleBookingQuery,
 } = userApi;

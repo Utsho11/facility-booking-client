@@ -4,12 +4,24 @@ import { useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
 import { FaLocationDot, FaMoneyCheckDollar } from "react-icons/fa6";
 import "./styles/facilitySection.css";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import Lottie from "lottie-react";
+import sportLoader from "../../assets/images/sport-loader.json";
 
 const FacilitySection = () => {
-  const { data } = useGetAllFacilitiesQuery([
+  const { data, isLoading } = useGetAllFacilitiesQuery([
     { name: "limit", value: "6" },
     { name: "page", value: "1" },
   ]);
+
+  if (isLoading) {
+    return (
+      <Lottie
+        animationData={sportLoader}
+        loop={true}
+        style={{ maxWidth: "100%", height: "100vh" }}
+      />
+    );
+  }
 
   return (
     <div className="facility-section">

@@ -11,11 +11,6 @@ import { setUser } from "../redux/features/auth/authSlice";
 import { FaVolleyballBall } from "react-icons/fa";
 import { useState } from "react";
 
-const defaultValues = {
-  email: "admin@gmail.com",
-  password: "admin@12345",
-};
-
 const Login = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
@@ -34,8 +29,6 @@ const Login = () => {
       const res = await login(userInfo).unwrap();
 
       const user = verifyToken(res.token);
-
-      console.log(user);
 
       dispatch(setUser({ user: user, token: res.token }));
 
@@ -64,7 +57,7 @@ const Login = () => {
             </span>
           </div>
           <br></br>
-          <BMCForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <BMCForm onSubmit={onSubmit}>
             <BMCInput type="text" name="email" label="Email:" />
             <BMCInput
               type={showPassword ? "text" : "password"} // Conditional input type

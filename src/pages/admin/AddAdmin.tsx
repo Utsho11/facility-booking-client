@@ -8,15 +8,6 @@ import BMCInput from "../../components/form/BMCInput";
 import { FaVolleyballBall } from "react-icons/fa";
 import BMCSelect from "../../components/form/BMCSelect";
 
-const defaultValues = {
-  name: "Programming Hero",
-  email: "user12@programming-hero.com",
-  password: "programming-hero",
-  phone: "01322901105",
-  role: "admin",
-  address: "Level-4, 34, Awal Centre, Banani, Dhaka",
-};
-
 const AddAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [addUser] = useAddUserMutation();
@@ -52,7 +43,7 @@ const AddAdmin = () => {
             <p className="title">Create An Admin</p>
           </div>
           <br></br>
-          <BMCForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <BMCForm onSubmit={onSubmit}>
             <Row gutter={8}>
               <Col span={24} md={{ span: 12 }} lg={{ span: 12 }}>
                 <BMCInput type="text" name="name" label="Name:" />

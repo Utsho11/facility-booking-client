@@ -10,8 +10,12 @@ import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
+interface ErrorData {
+  message: string;
+}
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://facility-booking-backend-system.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -31,40 +35,46 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
+  if (result.error) {
+    const errorData = result.error.data as ErrorData;
 
-  if (result?.error?.status === 404) {
-    toast.error(result?.error?.data?.message);
-  }
-  if (result?.error?.status === 403) {
-    toast.error(result?.error?.data?.message);
-  }
-  if (result?.error?.status === 400) {
-    toast.error(result?.error?.data?.message);
-  }
-  if (result?.error?.status === 401) {
-    //* Send Refresh
-    console.log("Sending refresh token");
+    if (result.error.status === 404) {
+      toast.error(errorData.message);
+    }
+    if (result.error.status === 403) {
+      toast.error(errorData.message);
+    }
+    if (result.error.status === 400) {
+      toast.error(errorData.message);
+    }
+    if (result.error.status === 401) {
+      //* Send Refresh
+      console.log("Sending refresh token");
 
-    const res = await fetch("http://localhost:5000/api/auth/refresh-token", {
-      method: "POST",
-      credentials: "include",
-    });
-
-    const data = await res.json();
-
-    if (data?.data?.accessToken) {
-      const user = (api.getState() as RootState).auth.user;
-
-      api.dispatch(
-        setUser({
-          user,
-          token: data.data.accessToken,
-        })
+      const res = await fetch(
+        "https://facility-booking-backend-system.vercel.app/api/auth/refresh-token",
+        {
+          method: "POST",
+          credentials: "include",
+        }
       );
 
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(logout());
+      const data = await res.json();
+
+      if (data?.data?.accessToken) {
+        const user = (api.getState() as RootState).auth.user;
+
+        api.dispatch(
+          setUser({
+            user,
+            token: data.data.accessToken,
+          })
+        );
+
+        result = await baseQuery(args, api, extraOptions);
+      } else {
+        api.dispatch(logout());
+      }
     }
   }
 
