@@ -14,24 +14,26 @@ import { MdAlternateEmail, MdLocalPhone } from "react-icons/md";
 
 const { TextArea } = Input;
 
-const serviceId = import.meta.env.VITE_SERVICE_ID;
-const publicKey = import.meta.env.VITE_PUBLIC_KEY;
-const templateId = import.meta.env.VITE_TEMPLATE_ID;
+// const serviceId = import.meta.env.VITE_SERVICE_ID;
+// const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+// const templateId = import.meta.env.VITE_TEMPLATE_ID;
 
 const Contact = () => {
   const { handleSubmit, control, reset } = useForm<FieldValues>();
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    emailjs.send(serviceId, templateId, data, publicKey).then(
-      () => {
-        toast.success("Email successfully sent.");
-        reset(); // Reset the form after successful submission
-      },
-      (error) => {
-        console.log("FAILED...", error.text);
-      }
-    );
+    emailjs
+      .send("service_9ihwtfr", "template_g8iggk8", data, "w3yUQdGSKufUMmGcF")
+      .then(
+        () => {
+          toast.success("Email successfully sent.");
+          reset(); // Reset the form after successful submission
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
 
   return (

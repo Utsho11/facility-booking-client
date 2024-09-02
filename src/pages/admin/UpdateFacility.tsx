@@ -10,12 +10,12 @@ import BMCInput from "../../components/form/BMCInput";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+// const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
 const UpdateFacility = () => {
   const { id } = useParams();
 
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=b63df16b4aa6b36bc2bdd5715e0c99a3`;
 
   const { data: currentFacility, isLoading } = useGetSingleFacilityQuery(
     id as string
@@ -24,29 +24,34 @@ const UpdateFacility = () => {
   // Submit handler
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const toastId = toast.loading("Updating facility...");
-    if (data.image) {
+
+    if (data.image !== currentFacility?.image) {
       const formData = new FormData();
       formData.append("image", data.image);
+      try {
+        fetch(img_hosting_url, {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((imgresponse) => {
+            data.image = imgresponse.data.display_url;
+            data.pricePerHour = Number(data.pricePerHour);
+            const updatedFacility = {
+              id: id,
+              data,
+            };
+            updateFacility(updatedFacility);
 
-      fetch(img_hosting_url, {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((imgresponse) => {
-          data.image = imgresponse.data.display_url;
-          data.pricePerHour = Number(data.pricePerHour);
-          const updatedFacility = {
-            id: id,
-            data,
-          };
-          updateFacility(updatedFacility);
-
-          toast.success("Updated Successfully!", {
-            id: toastId,
-            duration: 2000,
+            toast.success("Updated Successfully!", {
+              id: toastId,
+              duration: 2000,
+            });
           });
-        });
+      } catch (error) {
+        toast.error("Error updating", { id: toastId, duration: 2000 });
+        console.log(error);
+      }
     } else {
       const updatedFacility = {
         id: id,

@@ -7,11 +7,11 @@ import { useAddFacilityMutation } from "../../redux/features/admin/admin.api";
 import { toast } from "sonner";
 import imgDefault from "../../assets/images/istockphoto-1409329028-612x612.jpg";
 
-const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+// const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
 const CreateFacility = () => {
   const [addFacility] = useAddFacilityMutation();
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=b63df16b4aa6b36bc2bdd5715e0c99a3`;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const toastId = toast.loading("Creating new facility...");

@@ -10,8 +10,6 @@ const BookingDetailsPage = () => {
 
   const { data: booking } = useGetSingleBookingQuery(id as string);
 
-  console.log(booking);
-
   return (
     <div className="">
       <Card className="facility-card" bordered={false}>
