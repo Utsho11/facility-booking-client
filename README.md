@@ -1,50 +1,118 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Book My Court Website
 
-Currently, two official plugins are available:
+It's a frontend and backend project. It's a sport facility providing platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Name:
 
-## Expanding the ESLint configuration
+Book My Court
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Live URL:
 
-- Configure the top-level `parserOptions` property like this:
+- [Book My Court Client](https://book-my-court.vercel.app/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- [Book My Court Server](https://facility-booking-backend-system.vercel.app/)
+
+## Features:
+
+- **Create Facility and Book Facility.**
+
+- **Delete Facility and Cancel Booking.** 
+
+- **Update Facility and Remove.**
+
+- **Create Booking.** (Customer details needed)
+
+- **Filter and Pagination System.**
+
+- **Authentication and Authorization.**
+
+
+## Technology Used
+
+- **Redux Toolkit**: A streamlined toolset for efficient Redux development, offering simplified state management, reducers, and middleware configuration.
+
+- **Tailwind CSS**: A utility-first CSS framework enabling rapid UI development with pre-designed classes for styling directly in HTML.
+
+- **React**: A popular JavaScript library for building dynamic user interfaces, known for its component-based architecture and efficient DOM updates with a virtual DOM.
+
+- **shadcn/ui**: A modern and flexible React component library built with Tailwind CSS, providing pre-designed and customizable UI components for rapid development.
+
+- **cookie-parser**: Middleware for handling cookies in Express.js applications, allowing easy parsing and manipulation of cookies.
+
+- **cors**: Middleware for enabling Cross-Origin Resource Sharing (CORS) in Express.js, allowing your server to accept requests from different origins.
+
+- **dotenv**: A module that loads environment variables from a `.env` file into `process.env`, facilitating the configuration of environment-specific variables.
+
+- **express**: A fast, unopinionated, minimalist web framework for Node.js, used for building web applications and APIs.
+
+- **http-status**: A utility to interact with HTTP status codes, providing constants and descriptions for standard HTTP status codes.
+
+- **ts-node-dev**: A development tool that combines `ts-node` with `nodemon`, enabling automatic restarts and TypeScript compilation for faster development cycles.
+
+- **typescript**: A strongly typed programming language that builds on JavaScript, adding static type definitions to help catch errors early in the development process.
+
+- **MongoDB**: NoSQL database.
+
+- **Swiper.js**: It's popular library for creating slider.
+
+- **Antd**: It's ui component library.
+
+## Installation
+
+To set up the project locally, follow these steps:
+
+**1. Clone the repository**:
+
+- Clone repository for `Client`:
+
+```bash
+git clone https://github.com/Utsho11/facility-booking-client.git
+```
+- Clone repository for `Server`:
+
+```bash
+git clone https://github.com/Utsho11/facility-booking-backend-system.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+**2. Go to the project directory:**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Please change my-project with the main directory here. 
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd my-project
+```
+ 
+
+**3. Install dependencies**:
+
+Open your terminal and run these commands to set npm.
+
+```bash
+1. npm init -y
+    
+2. npm install
+```
+
+**4. Set up environment variables**:
+
+Create a `.env` file in the root of the project and add the following variables:
+
+- **For Client:**
+
+Create an `.env.local` file at the same level of `package.json` file.
+
+```bash
+VITE_IMAGE_UPLOAD_TOKEN = put your imagebb api
+VITE_PUBLIC_KEY = put your public key
+VITE_SERVICE_ID = put your service id
+VITE_TEMPLATE_ID = put your template id
+```
+
+**5. Run the application**:
+
+You can run both client and server by following this command.
+
+```bash
+npm run dev
 ```
