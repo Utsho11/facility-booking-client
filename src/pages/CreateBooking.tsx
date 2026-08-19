@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Tag, Tooltip } from "antd";
+import { Button, Col, Row, Tag } from "antd";
 import { useGetAllFacilitiesQuery } from "../redux/features/admin/admin.api";
 import {
   useCheckAvailabilityQuery,

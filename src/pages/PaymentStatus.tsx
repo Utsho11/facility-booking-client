@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Button, Card, Divider, Result, Spin, Tag } from "antd";
+import { Button, Divider, Spin, Tag } from "antd";
 import {
   FaCheckCircle,
   FaTimesCircle,

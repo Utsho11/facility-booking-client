@@ -3,7 +3,7 @@ import "./styles/Dashboard.css";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import avatar from "../../assets/images/avatar-male-man-svgrepo-com.png";
-import { Button, Card, Col, Row, Statistic } from "antd";
+import { Button, Col, Row } from "antd";
 import { Link } from "react-router-dom";
 import { useGetMeQuery } from "../../redux/features/user/user.api";
 import { useGetAllBookingForAdminQuery, useGetAllFacilitiesQuery } from "../../redux/features/admin/admin.api";
