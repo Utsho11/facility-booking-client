@@ -24,12 +24,8 @@ const BookingDetailsPage = () => {
           <Col sm={24} lg={12}>
             <div className="facility-details">
               <h2>{booking?.facility?.name}</h2>
-              <p style={{ color: "#545454" }}>
-                {booking?.facility?.description} Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Fugiat nisi aliquam ad quia,
-                totam consectetur quos nemo odio vel distinctio perspiciatis
-                officiis saepe magni expedita laborum facere enim voluptas
-                dolorum.
+              <p style={{ color: "#545454", lineHeight: "1.6" }}>
+                {booking?.facility?.description}
               </p>
               <p style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                 <FaLocationDot /> {booking?.facility?.location}

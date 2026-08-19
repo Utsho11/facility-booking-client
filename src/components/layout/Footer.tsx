@@ -61,7 +61,7 @@ const Footer = () => {
               <div className="social-icon">
                 <MailIcon />
               </div>
-              <p>evergreenNursery@exampledemo.com</p>
+              <p>support@bookmycourt.com</p>
             </li>
             <li className="footer-contact">
               <div className="social-icon">

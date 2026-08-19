@@ -14,8 +14,12 @@ interface ErrorData {
   message: string;
 }
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://facility-booking-backend-system.vercel.app/api";
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://facility-booking-backend-system.vercel.app/api",
+  baseUrl: API_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -51,13 +55,10 @@ const baseQueryWithRefreshToken: BaseQueryFn<
       //* Send Refresh
       console.log("Sending refresh token");
 
-      const res = await fetch(
-        "https://facility-booking-backend-system.vercel.app/api/auth/refresh-token",
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${API_BASE_URL}/auth/refresh-token`, {
+        method: "POST",
+        credentials: "include",
+      });
 
       const data = await res.json();
 

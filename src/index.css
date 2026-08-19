@@ -1,7 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 dark:bg-[#121212] dark:text-gray-100 min-h-screen;
 }
 
 .form_container {
@@ -9,11 +20,16 @@
   gap: 15px;
   padding: 40px 40px 20px 40px;
   background-color: #ffffff;
-  box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
-    0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
-    0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 11px;
-  font-family: "Inter", sans-serif;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.dark .form_container {
+  background-color: #1e1e1e;
+  border-color: #2d2d2d;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .title_container {
@@ -32,12 +48,20 @@
   color: #212121;
 }
 
+.dark .title {
+  color: #f3f4f6;
+}
+
 .subtitle {
-  font-size: 0.725rem;
+  font-size: 0.8rem;
   max-width: 80%;
   text-align: center;
-  line-height: 1.1rem;
+  line-height: 1.2rem;
   color: #8b8e98;
+}
+
+.dark .subtitle {
+  color: #9ca3af;
 }
 
 .available-slot-details {

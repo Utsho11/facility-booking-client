@@ -28,7 +28,7 @@ const FacilitiesPage: React.FC = () => {
     if (filterLocation) {
       queryParams.push({
         name: "sort",
-        value: filterLocation === "asc" ? "asc" : "desc",
+        value: filterLocation === "asc" ? "pricePerHour" : "-pricePerHour",
       });
     }
 
@@ -44,111 +44,131 @@ const FacilitiesPage: React.FC = () => {
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);
+    setPage(1);
   };
 
   const handleFilterChange = (value: string) => {
     setFilterLocation(value);
+    setPage(1);
   };
 
   if (isLoading) {
     return (
-      <Lottie
-        animationData={sportLoader}
-        loop={true}
-        style={{ maxWidth: "100%", height: "100vh" }}
-      />
+      <div className="flex justify-center items-center py-20 min-h-[60vh]">
+        <Lottie
+          animationData={sportLoader}
+          loop={true}
+          style={{ maxWidth: "300px", height: "300px" }}
+        />
+      </div>
     );
   }
 
   return (
-    <div style={{ margin: "3rem 2rem", padding: "1rem 0" }}>
-      {/* Search Bar */}
-      <div style={{ margin: "auto" }}>
-        <Row
-          gutter={[8, 8]}
-          justify="center"
-          align="middle"
-          style={{ margin: "2rem 0" }}
-        >
-          <Col span={24} md={{ span: 12 }} lg={{ span: 6 }}>
-            <Search
-              placeholder="Search facilities"
-              enterButton="Search"
-              onSearch={handleSearch}
-              style={{ width: "350px" }}
-            />
-          </Col>
-          {/* Filter Dropdown */}
-          <Col span={24} md={{ span: 12 }} lg={{ span: 6 }}>
-            <Select
-              placeholder="Filter by price"
-              allowClear
-              defaultValue="asc"
-              style={{ width: "350px" }}
-              onChange={handleFilterChange}
-            >
-              <Option value="asc"> Low to High</Option>
-              <Option value="desc">High to Low</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
+      {/* Header & Search Bar */}
+      <div className="text-center mb-10">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          Explore All <span className="text-[#FE7D1F]">Facilities</span>
+        </h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
+          Find and book the top sports grounds, arenas, and courts in your area.
+        </p>
+
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+          <Search
+            placeholder="Search by facility name or location..."
+            enterButton="Search"
+            size="large"
+            allowClear
+            onSearch={handleSearch}
+            className="w-full sm:w-2/3"
+          />
+          <Select
+            placeholder="Sort by price"
+            allowClear
+            size="large"
+            className="w-full sm:w-1/3"
+            onChange={handleFilterChange}
+          >
+            <Option value="asc">Price: Low to High</Option>
+            <Option value="desc">Price: High to Low</Option>
+          </Select>
+        </div>
       </div>
 
       {/* Facilities Cards */}
-      <Row gutter={[16, 16]}>
-        {data?.data?.map((facility, index) => (
-          <Col key={index} xs={24} sm={12} lg={8}>
-            <Card
-              title={facility.name}
-              bordered={false}
-              hoverable
-              style={{ width: "100%", height: "100%" }}
+      {data?.data?.length === 0 ? (
+        <div className="text-center py-16 bg-white dark:bg-[#1e1e1e] rounded-2xl border border-gray-100 dark:border-gray-800">
+          <p className="text-gray-500 dark:text-gray-400 text-lg">
+            No facilities found matching your criteria.
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {data?.data?.map((facility, index) => (
+            <div
+              key={index}
+              className="group bg-white dark:bg-[#1e1e1e] rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between"
             >
-              <img className="facility-card-img" src={facility?.image} />
-              <p style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <FaLocationDot />
-                <strong>{facility.location}</strong>
-              </p>
-              <p style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <FaMoneyCheckDollar />
-                <strong>{facility.pricePerHour}$</strong>
-              </p>
-              <hr style={{ margin: "1rem 0" }} />
-              <div>
-                <Row gutter={8}>
-                  <Col>
-                    <Link to={`/facility/${facility._id}`}>
-                      <Button>
-                        <IoInformationCircleSharp />
-                        Details
-                      </Button>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <Link to="/createBooking">
-                      <Button
-                        style={{ backgroundColor: "#fe7d1f", color: "#fff" }}
-                      >
-                        Book Now
-                      </Button>
-                    </Link>
-                  </Col>
-                </Row>
+              <div className="relative overflow-hidden h-56 bg-gray-100 dark:bg-gray-800">
+                <img
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  src={facility?.image}
+                  alt={facility?.name}
+                />
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white font-bold px-3 py-1 rounded-full text-xs flex items-center gap-1 shadow-md">
+                  <span>${facility.pricePerHour}</span> / hr
+                </div>
               </div>
-            </Card>
-          </Col>
-        ))}
-      </Row>
 
-      {/* Pagination (if required) */}
-      <div>
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#FE7D1F] transition-colors line-clamp-1">
+                    {facility.name}
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 line-clamp-2">
+                    {facility.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mt-4">
+                    <FaLocationDot className="text-[#FE7D1F]" />
+                    <span className="truncate">{facility.location}</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between gap-3">
+                  <Link to={`/facility/${facility._id}`} className="flex-1">
+                    <Button
+                      icon={<IoInformationCircleSharp size={16} />}
+                      className="w-full rounded-lg h-10 font-medium dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+                    >
+                      Details
+                    </Button>
+                  </Link>
+                  <Link to="/createBooking" className="flex-1">
+                    <Button
+                      type="primary"
+                      style={{ backgroundColor: "#FE7D1F" }}
+                      className="w-full rounded-lg h-10 font-medium text-white shadow-md"
+                    >
+                      Book Now
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      <div className="mt-12 flex justify-center">
         <Pagination
-          style={{ marginTop: "2rem" }}
-          align="center"
           current={page}
-          pageSize={metaData?.limit}
-          total={metaData?.total}
+          pageSize={metaData?.limit || 6}
+          total={metaData?.total || 0}
           onChange={(value) => setPage(value)}
+          showSizeChanger={false}
         />
       </div>
     </div>

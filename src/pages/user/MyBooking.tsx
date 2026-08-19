@@ -1,4 +1,4 @@
-import { Button, Space, Table, TableColumnsType } from "antd";
+import { Button, Popconfirm, Space, Table, TableColumnsType, Tag } from "antd";
 import {
   useCancelBookingMutation,
   useGetAllBookingForUserQuery,
@@ -8,78 +8,135 @@ import { Link } from "react-router-dom";
 
 export type TTableData = {
   key: string;
-  name: string;
-  isBooked: string;
+  facilityName: string;
+  date: string;
   startTime: string;
   endTime: string;
+  payableAmount: number;
+  paymentStatus: string;
+  isBooked: string;
 };
 
 const MyBooking = () => {
   const { data: bookingData, isFetching } = useGetAllBookingForUserQuery();
 
-  const [cancelBooking] = useCancelBookingMutation();
+  const [cancelBooking, { isLoading: isCancelling }] = useCancelBookingMutation();
 
-  const tableData = bookingData?.map(
-    ({ _id, facility, isBooked, startTime, endTime }) => ({
-      key: _id,
-      name: facility.name,
-      isBooked,
-      startTime,
-      endTime,
-    })
-  );
+  const tableData: TTableData[] =
+    bookingData?.map(
+      ({
+        _id,
+        facility,
+        date,
+        isBooked,
+        startTime,
+        endTime,
+        payableAmount,
+        paymentStatus,
+      }) => ({
+        key: _id,
+        facilityName: facility?.name || "Deleted Facility",
+        date: date || "N/A",
+        startTime,
+        endTime,
+        payableAmount: payableAmount || 0,
+        paymentStatus: paymentStatus || "pending",
+        isBooked: isBooked || "unconfirmed",
+      })
+    ) || [];
 
-  const handleCancel = (id: string) => {
-    cancelBooking(id);
-    toast.success("Booking Cancelled Successfully.");
+  const handleCancel = async (id: string) => {
+    const toastId = toast.loading("Cancelling booking...");
+    try {
+      await cancelBooking(id).unwrap();
+      toast.success("Booking cancelled successfully.", { id: toastId });
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Failed to cancel booking.", {
+        id: toastId,
+      });
+    }
   };
 
   const columns: TableColumnsType<TTableData> = [
     {
-      title: "Name",
-      key: "name",
-      dataIndex: "name",
+      title: "Facility",
+      key: "facilityName",
+      dataIndex: "facilityName",
     },
-
     {
-      title: "IsBooked",
+      title: "Date",
+      key: "date",
+      dataIndex: "date",
+    },
+    {
+      title: "Time Slot",
+      key: "timeSlot",
+      render: (item: TTableData) => `${item.startTime} - ${item.endTime}`,
+    },
+    {
+      title: "Payable Amount",
+      key: "payableAmount",
+      render: (item: TTableData) => `$${item.payableAmount}`,
+    },
+    {
+      title: "Payment",
+      key: "paymentStatus",
+      render: (item: TTableData) => (
+        <Tag color={item.paymentStatus === "paid" ? "green" : "orange"}>
+          {item.paymentStatus.toUpperCase()}
+        </Tag>
+      ),
+    },
+    {
+      title: "Status",
       key: "isBooked",
-      dataIndex: "isBooked",
-    },
-    {
-      title: "Start Time",
-      key: "startTime",
-      dataIndex: "startTime",
-    },
-    {
-      title: "End Time",
-      key: "endTime",
-      dataIndex: "endTime",
+      render: (item: TTableData) => {
+        const color =
+          item.isBooked === "confirmed"
+            ? "green"
+            : item.isBooked === "canceled"
+            ? "red"
+            : "gold";
+        return <Tag color={color}>{item.isBooked.toUpperCase()}</Tag>;
+      },
     },
     {
       title: "Action",
       key: "x",
-      render: (item) => {
+      render: (item: TTableData) => {
+        const isCanceled = item.isBooked === "canceled";
         return (
           <Space>
-            <Button onClick={() => handleCancel(item.key)}>Cancel</Button>
+            {!isCanceled && (
+              <Popconfirm
+                title="Cancel Booking"
+                description="Are you sure you want to cancel this booking?"
+                onConfirm={() => handleCancel(item.key)}
+                okText="Yes, Cancel"
+                cancelText="No"
+              >
+                <Button danger loading={isCancelling} size="small">
+                  Cancel
+                </Button>
+              </Popconfirm>
+            )}
             <Link to={`/user/bookings/${item.key}`}>
-              <Button>Details</Button>
+              <Button size="small">Details</Button>
             </Link>
           </Space>
         );
       },
-      width: "1%",
     },
   ];
 
   return (
-    <div className="">
+    <div className="" style={{ padding: "1.5rem" }}>
+      <h2 style={{ marginBottom: "1.5rem" }}>My Bookings</h2>
       <Table
         loading={isFetching}
         columns={columns}
         dataSource={tableData}
-        pagination={false}
+        pagination={{ pageSize: 10 }}
         scroll={{ x: 800 }}
       />
     </div>

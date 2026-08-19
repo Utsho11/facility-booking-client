@@ -1,118 +1,95 @@
+# 🏟️ Book My Court - Facility & Sports Booking Client
 
-# Book My Court Website
+[![React](https://img.shields.io/badge/React-18.3-61DAFB.svg)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF.svg)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2.5-764ABC.svg)](https://redux-toolkit.js.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC.svg)](https://tailwindcss.com/)
+[![Ant Design](https://img.shields.io/badge/Ant%20Design-5.24-0170FE.svg)](https://ant.design/)
 
-It's a frontend and backend project. It's a sport facility providing platform.
+A modern, responsive, and feature-rich frontend application for discovering and booking premier sports courts and athletic venues.
 
-## Project Name:
+---
 
-Book My Court
+## 🎨 UI Showcase & Architecture
 
-## Live URL:
-
-- [Book My Court Client](https://book-my-court.vercel.app/)
-
-- [Book My Court Server](https://facility-booking-backend-system.vercel.app/)
-
-## Features:
-
-- **Create Facility and Book Facility.**
-
-- **Delete Facility and Cancel Booking.** 
-
-- **Update Facility and Remove.**
-
-- **Create Booking.** (Customer details needed)
-
-- **Filter and Pagination System.**
-
-- **Authentication and Authorization.**
-
-
-## Technology Used
-
-- **Redux Toolkit**: A streamlined toolset for efficient Redux development, offering simplified state management, reducers, and middleware configuration.
-
-- **Tailwind CSS**: A utility-first CSS framework enabling rapid UI development with pre-designed classes for styling directly in HTML.
-
-- **React**: A popular JavaScript library for building dynamic user interfaces, known for its component-based architecture and efficient DOM updates with a virtual DOM.
-
-- **shadcn/ui**: A modern and flexible React component library built with Tailwind CSS, providing pre-designed and customizable UI components for rapid development.
-
-- **cookie-parser**: Middleware for handling cookies in Express.js applications, allowing easy parsing and manipulation of cookies.
-
-- **cors**: Middleware for enabling Cross-Origin Resource Sharing (CORS) in Express.js, allowing your server to accept requests from different origins.
-
-- **dotenv**: A module that loads environment variables from a `.env` file into `process.env`, facilitating the configuration of environment-specific variables.
-
-- **express**: A fast, unopinionated, minimalist web framework for Node.js, used for building web applications and APIs.
-
-- **http-status**: A utility to interact with HTTP status codes, providing constants and descriptions for standard HTTP status codes.
-
-- **ts-node-dev**: A development tool that combines `ts-node` with `nodemon`, enabling automatic restarts and TypeScript compilation for faster development cycles.
-
-- **typescript**: A strongly typed programming language that builds on JavaScript, adding static type definitions to help catch errors early in the development process.
-
-- **MongoDB**: NoSQL database.
-
-- **Swiper.js**: It's popular library for creating slider.
-
-- **Antd**: It's ui component library.
-
-## Installation
-
-To set up the project locally, follow these steps:
-
-**1. Clone the repository**:
-
-- Clone repository for `Client`:
-
-```bash
-git clone https://github.com/Utsho11/facility-booking-client.git
-```
-- Clone repository for `Server`:
-
-```bash
-git clone https://github.com/Utsho11/facility-booking-backend-system.git
-```
-
-**2. Go to the project directory:**
-
-Please change my-project with the main directory here. 
-
-```bash
-cd my-project
-```
- 
-
-**3. Install dependencies**:
-
-Open your terminal and run these commands to set npm.
-
-```bash
-1. npm init -y
+```mermaid
+flowchart TD
+    User([User / Athlete]) --> UI[React UI Components]
+    UI --> Router[React Router v6]
     
-2. npm install
+    Router --> Pages[Pages: Home, Facilities, Studio, Dashboards]
+    
+    Pages --> Theme[ThemeWrapper & AntD ConfigProvider]
+    Pages --> RTK[Redux Toolkit & RTK Query]
+    
+    RTK -->|JWT Auth / Token Refresh| API[(Backend REST API)]
+    RTK -->|Persisted State| LocalStorage[(LocalStorage)]
 ```
 
-**4. Set up environment variables**:
+---
 
-Create a `.env` file in the root of the project and add the following variables:
+## 🌟 Key Features
 
-- **For Client:**
+- **🌓 Dynamic Dark & Light Theme:** Persistent theme toggler smoothly synchronizing Ant Design algorithms (`darkAlgorithm` / `defaultAlgorithm`), Tailwind CSS dark classes, and custom glassmorphism styles.
+- **🏟️ Court Booking Studio:** Live slot availability checker with interactive visual tags, automatic hourly pricing calculator, and pre-selection link integration.
+- **💳 Celebration Payment Receipt:** Dedicated receipt page with interactive confetti animations, transaction breakdown, and receipt printing.
+- **⭐ Player Reviews & Ratings:** Star rating badges, community feedback feed, and submission forms for authenticated members.
+- **📊 Metric KPI Dashboards:** Custom analytics widgets for both Admin (revenue, facility counts, total bookings) and User (spent, confirmed slots).
+- **🛡️ Protected Routes & Token Refresh:** Seamless role-based access protection with automatic silent token renewal.
 
-Create an `.env.local` file at the same level of `package.json` file.
+---
 
-```bash
-VITE_IMAGE_UPLOAD_TOKEN = put your imagebb api
-VITE_PUBLIC_KEY = put your public key
-VITE_SERVICE_ID = put your service id
-VITE_TEMPLATE_ID = put your template id
+## 📁 Project Structure
+
+```
+src/
+├── assets/         # Images, icons, and Lottie animations
+├── components/     # Reusable layout, form, and home section components
+├── constants/      # Navigation links and global constants
+├── pages/          # Application views (Facilities, Booking Studio, Dashboards, etc.)
+├── redux/          # Store setup, RTK Query API injections, and slices
+│   ├── api/        # Base RTK query configuration with token refresh
+│   └── features/   # Auth, Theme, Facility, Booking, and Review slices
+├── routes/         # React Router configuration with ProtectedRoute guards
+├── types/          # Shared TypeScript type definitions
+└── utils/          # Token verification and helper functions
 ```
 
-**5. Run the application**:
+---
 
-You can run both client and server by following this command.
+## ⚙️ Environment Variables
 
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Local Development
 ```bash
+# Install dependencies
+npm install
+
+# Start Vite dev server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview build
+npm run preview
+```
+
+### 2. Docker Deployment
+```bash
+# Build Docker image
+docker build -t book-my-court-client .
+
+# Run container
+docker run -p 80:80 book-my-court-client
 ```

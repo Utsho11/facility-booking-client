@@ -14,6 +14,7 @@ import FacilityDetailsPage from "../pages/facility/FacilityDetailsPage";
 import CreateBooking from "../pages/CreateBooking";
 import FacilitiesPage from "../pages/facility/FacilitiesPage";
 import About from "../pages/about/About";
+import PaymentStatus from "../pages/PaymentStatus";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "createBooking",
         element: <CreateBooking />,
+      },
+      {
+        path: "payment-status",
+        element: <PaymentStatus />,
       },
     ],
   },
