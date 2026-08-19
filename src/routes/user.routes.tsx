@@ -12,6 +12,10 @@ export const userPaths = [
     element: <MyBooking />,
   },
   {
+    path: "myBooking",
+    element: <MyBooking />,
+  },
+  {
     path: "bookings/:id",
     element: <BookingDetailsPage />,
   },

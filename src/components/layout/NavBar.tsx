@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
           {
             key: "my-bookings",
             icon: <FaCalendarCheck className="text-blue-500" />,
-            label: <Link to="/user/myBooking">My Reservations</Link>,
+            label: <Link to="/user/myBookings">My Reservations</Link>,
           },
         ]
       : []),
