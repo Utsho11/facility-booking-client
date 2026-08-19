@@ -145,11 +145,11 @@ const FacilitiesPage: React.FC = () => {
                       Details
                     </Button>
                   </Link>
-                  <Link to="/createBooking" className="flex-1">
+                  <Link to={`/createBooking?facilityId=${facility._id}`} className="flex-1">
                     <Button
                       type="primary"
                       style={{ backgroundColor: "#FE7D1F" }}
-                      className="w-full rounded-lg h-10 font-medium text-white shadow-md"
+                      className="w-full rounded-lg h-10 font-bold text-white shadow-md hover:scale-102 transition-transform"
                     >
                       Book Now
                     </Button>
